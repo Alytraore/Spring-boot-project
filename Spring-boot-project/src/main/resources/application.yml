@@ -1,0 +1,58 @@
+server:
+  port: 8082
+
+spring:
+    profiles:
+      active: qa
+---
+
+  spring:
+    profiles: dev
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      url: jdbc:mysql://localhost:3306/dcbapp
+      password: Tenin1991
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: 'true'
+  welcome:
+    message: Welcome to my new world!!
+
+---
+spring:
+  profiles: qa
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp-qa
+    password: Tenin1991
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  welcome:
+    message: Welcome to my new world!!
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+
+---
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/dcbapp-prod
+    password: Tenin1991
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  welcome:
+    message: Welcome to my new world!!
